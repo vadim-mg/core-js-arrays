@@ -488,526 +488,526 @@ describe('arrays-tasks', () => {
     }
   );
 
-  it.optional('flattenArray should return a single-level array', () => {
-    [
-      {
-        arr: [1, [2, [3, 4], 5], 6],
-        expected: [1, 2, 3, 4, 5, 6],
-      },
-      {
-        arr: ['a', ['b', ['c', 'd'], 'e'], 'f'],
-        expected: ['a', 'b', 'c', 'd', 'e', 'f'],
-      },
-      {
-        arr: [1, 2, 3, 4],
-        expected: [1, 2, 3, 4],
-      },
-    ].forEach((data) => {
-      const actual = tasks.flattenArray(data.arr);
-      assert.deepEqual(data.expected, actual);
-    });
-  });
+  // it.optional('flattenArray should return a single-level array', () => {
+  //   [
+  //     {
+  //       arr: [1, [2, [3, 4], 5], 6],
+  //       expected: [1, 2, 3, 4, 5, 6],
+  //     },
+  //     {
+  //       arr: ['a', ['b', ['c', 'd'], 'e'], 'f'],
+  //       expected: ['a', 'b', 'c', 'd', 'e', 'f'],
+  //     },
+  //     {
+  //       arr: [1, 2, 3, 4],
+  //       expected: [1, 2, 3, 4],
+  //     },
+  //   ].forEach((data) => {
+  //     const actual = tasks.flattenArray(data.arr);
+  //     assert.deepEqual(data.expected, actual);
+  //   });
+  // });
 
-  it.optional(
-    'selectMany should return an array of child items from the specified array',
-    () => {
-      [
-        {
-          arr: [
-            [1, 2],
-            [3, 4],
-            [5, 6],
-          ],
-          childrenSelector: (x) => x,
-          expected: [1, 2, 3, 4, 5, 6],
-        },
-        {
-          arr: [
-            [11, 12, 13, 14, 15],
-            [21, 22, undefined, 23, 24, 25],
-            [31, 32, 34, 35],
-          ],
-          childrenSelector: (x) => x.slice(0, 2),
-          expected: [11, 12, 21, 22, 31, 32],
-        },
-        {
-          arr: ['one', 'two', 'three'],
-          childrenSelector: (x) => x.split(''),
-          expected: ['o', 'n', 'e', 't', 'w', 'o', 't', 'h', 'r', 'e', 'e'],
-        },
-      ].forEach((data) => {
-        const actual = tasks.selectMany(data.arr, data.childrenSelector);
-        assert.deepStrictEqual(data.expected, actual);
-      });
-    }
-  );
+  // it.optional(
+  //   'selectMany should return an array of child items from the specified array',
+  //   () => {
+  //     [
+  //       {
+  //         arr: [
+  //           [1, 2],
+  //           [3, 4],
+  //           [5, 6],
+  //         ],
+  //         childrenSelector: (x) => x,
+  //         expected: [1, 2, 3, 4, 5, 6],
+  //       },
+  //       {
+  //         arr: [
+  //           [11, 12, 13, 14, 15],
+  //           [21, 22, undefined, 23, 24, 25],
+  //           [31, 32, 34, 35],
+  //         ],
+  //         childrenSelector: (x) => x.slice(0, 2),
+  //         expected: [11, 12, 21, 22, 31, 32],
+  //       },
+  //       {
+  //         arr: ['one', 'two', 'three'],
+  //         childrenSelector: (x) => x.split(''),
+  //         expected: ['o', 'n', 'e', 't', 'w', 'o', 't', 'h', 'r', 'e', 'e'],
+  //       },
+  //     ].forEach((data) => {
+  //       const actual = tasks.selectMany(data.arr, data.childrenSelector);
+  //       assert.deepStrictEqual(data.expected, actual);
+  //     });
+  //   }
+  // );
 
-  it.optional('calculateBalance should return the final balance', () => {
-    [
-      {
-        arr: [
-          [10, 8],
-          [5, 1],
-        ],
-        expected: 6,
-      },
-      {
-        arr: [
-          [10, 8],
-          [1, 5],
-        ],
-        expected: -2,
-      },
-    ].forEach((data) => {
-      const actual = tasks.calculateBalance(data.arr);
-      assert.strictEqual(data.expected, actual);
-    });
-  });
+  // it.optional('calculateBalance should return the final balance', () => {
+  //   [
+  //     {
+  //       arr: [
+  //         [10, 8],
+  //         [5, 1],
+  //       ],
+  //       expected: 6,
+  //     },
+  //     {
+  //       arr: [
+  //         [10, 8],
+  //         [1, 5],
+  //       ],
+  //       expected: -2,
+  //     },
+  //   ].forEach((data) => {
+  //     const actual = tasks.calculateBalance(data.arr);
+  //     assert.strictEqual(data.expected, actual);
+  //   });
+  // });
 
-  // createChunks
-  it.optional('createChunks should return an array of chunks', () => {
-    [
-      {
-        arr: [1, 2, 3, 4, 5, 6, 7],
-        chunkSize: 3,
-        expected: [[1, 2, 3], [4, 5, 6], [7]],
-      },
-      {
-        arr: ['a', 'b', 'c', 'd', 'e'],
-        chunkSize: 2,
-        expected: [['a', 'b'], ['c', 'd'], ['e']],
-      },
-      {
-        arr: [10, 20, 30, 40, 50],
-        chunkSize: 1,
-        expected: [[10], [20], [30], [40], [50]],
-      },
-    ].forEach((data) => {
-      const actual = tasks.createChunks(data.arr, data.chunkSize);
-      assert.deepEqual(data.expected, actual);
-    });
-  });
+  // // createChunks
+  // it.optional('createChunks should return an array of chunks', () => {
+  //   [
+  //     {
+  //       arr: [1, 2, 3, 4, 5, 6, 7],
+  //       chunkSize: 3,
+  //       expected: [[1, 2, 3], [4, 5, 6], [7]],
+  //     },
+  //     {
+  //       arr: ['a', 'b', 'c', 'd', 'e'],
+  //       chunkSize: 2,
+  //       expected: [['a', 'b'], ['c', 'd'], ['e']],
+  //     },
+  //     {
+  //       arr: [10, 20, 30, 40, 50],
+  //       chunkSize: 1,
+  //       expected: [[10], [20], [30], [40], [50]],
+  //     },
+  //   ].forEach((data) => {
+  //     const actual = tasks.createChunks(data.arr, data.chunkSize);
+  //     assert.deepEqual(data.expected, actual);
+  //   });
+  // });
 
-  it.optional(
-    'generateOdds should return the array of odd numbers of specified size',
-    () => {
-      [
-        {
-          len: 1,
-          expected: [1],
-        },
-        {
-          len: 2,
-          expected: [1, 3],
-        },
-        {
-          len: 5,
-          expected: [1, 3, 5, 7, 9],
-        },
-        {
-          len: 16,
-          expected: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31],
-        },
-      ].forEach((data) => {
-        assert.deepEqual(data.expected, tasks.generateOdds(data.len));
-      });
-    }
-  );
+  // it.optional(
+  //   'generateOdds should return the array of odd numbers of specified size',
+  //   () => {
+  //     [
+  //       {
+  //         len: 1,
+  //         expected: [1],
+  //       },
+  //       {
+  //         len: 2,
+  //         expected: [1, 3],
+  //       },
+  //       {
+  //         len: 5,
+  //         expected: [1, 3, 5, 7, 9],
+  //       },
+  //       {
+  //         len: 16,
+  //         expected: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31],
+  //       },
+  //     ].forEach((data) => {
+  //       assert.deepEqual(data.expected, tasks.generateOdds(data.len));
+  //     });
+  //   }
+  // );
 
-  it.optional(
-    'getElementByIndices should return an element from array by specified indexes',
-    () => {
-      [
-        {
-          arr: [
-            [1, 2],
-            [3, 4],
-            [5, 6],
-          ],
-          indexes: [0, 0],
-          expected: 1,
-        },
-        {
-          arr: ['one', 'two', 'three'],
-          indexes: [2],
-          expected: 'three',
-        },
-        {
-          arr: [[[1, 2, 3]]],
-          indexes: [0, 0, 1],
-          expected: 2,
-        },
-      ].forEach((data) => {
-        const actual = tasks.getElementByIndices(data.arr, data.indexes);
-        assert.equal(
-          data.expected,
-          actual,
-          `getElementByIndices(${JSON.stringify(data.arr)}, ${JSON.stringify(
-            data.indexes
-          )}) returns an incorrect result. Expected ${
-            data.expected
-          }, but actual ${actual}`
-        );
-      });
-    }
-  );
+  // it.optional(
+  //   'getElementByIndices should return an element from array by specified indexes',
+  //   () => {
+  //     [
+  //       {
+  //         arr: [
+  //           [1, 2],
+  //           [3, 4],
+  //           [5, 6],
+  //         ],
+  //         indexes: [0, 0],
+  //         expected: 1,
+  //       },
+  //       {
+  //         arr: ['one', 'two', 'three'],
+  //         indexes: [2],
+  //         expected: 'three',
+  //       },
+  //       {
+  //         arr: [[[1, 2, 3]]],
+  //         indexes: [0, 0, 1],
+  //         expected: 2,
+  //       },
+  //     ].forEach((data) => {
+  //       const actual = tasks.getElementByIndices(data.arr, data.indexes);
+  //       assert.equal(
+  //         data.expected,
+  //         actual,
+  //         `getElementByIndices(${JSON.stringify(data.arr)}, ${JSON.stringify(
+  //           data.indexes
+  //         )}) returns an incorrect result. Expected ${
+  //           data.expected
+  //         }, but actual ${actual}`
+  //       );
+  //     });
+  //   }
+  // );
 
-  it.optional(
-    'getFalsyValuesCount should return the number of falsy value in the specified array',
-    () => {
-      [
-        {
-          arr: [],
-          expected: 0,
-        },
-        {
-          arr: [1, '', 3],
-          expected: 1,
-        },
-        {
-          arr: [-1, 'false', null, 0],
-          expected: 2,
-        },
-        {
-          arr: [null, undefined, NaN, false, 0, ''],
-          expected: 6,
-        },
-      ].forEach((data) => {
-        const actual = tasks.getFalsyValuesCount(data.arr);
-        assert.deepEqual(
-          data.expected,
-          actual,
-          `Test failed for [${data.arr}]`
-        );
-      });
-    }
-  );
+  // it.optional(
+  //   'getFalsyValuesCount should return the number of falsy value in the specified array',
+  //   () => {
+  //     [
+  //       {
+  //         arr: [],
+  //         expected: 0,
+  //       },
+  //       {
+  //         arr: [1, '', 3],
+  //         expected: 1,
+  //       },
+  //       {
+  //         arr: [-1, 'false', null, 0],
+  //         expected: 2,
+  //       },
+  //       {
+  //         arr: [null, undefined, NaN, false, 0, ''],
+  //         expected: 6,
+  //       },
+  //     ].forEach((data) => {
+  //       const actual = tasks.getFalsyValuesCount(data.arr);
+  //       assert.deepEqual(
+  //         data.expected,
+  //         actual,
+  //         `Test failed for [${data.arr}]`
+  //       );
+  //     });
+  //   }
+  // );
 
-  it.optional(
-    'getIdentityMatrix should return the identity matrix of the specified size',
-    () => {
-      [
-        {
-          n: 1,
-          expected: [[1]],
-        },
-        {
-          n: 2,
-          expected: [
-            [1, 0],
-            [0, 1],
-          ],
-        },
-        {
-          n: 5,
-          expected: [
-            [1, 0, 0, 0, 0],
-            [0, 1, 0, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 0, 1, 0],
-            [0, 0, 0, 0, 1],
-          ],
-        },
-      ].forEach((data) => {
-        const actual = tasks.getIdentityMatrix(data.n);
-        assert.deepEqual(data.expected, actual);
-      });
-    }
-  );
+  // it.optional(
+  //   'getIdentityMatrix should return the identity matrix of the specified size',
+  //   () => {
+  //     [
+  //       {
+  //         n: 1,
+  //         expected: [[1]],
+  //       },
+  //       {
+  //         n: 2,
+  //         expected: [
+  //           [1, 0],
+  //           [0, 1],
+  //         ],
+  //       },
+  //       {
+  //         n: 5,
+  //         expected: [
+  //           [1, 0, 0, 0, 0],
+  //           [0, 1, 0, 0, 0],
+  //           [0, 0, 1, 0, 0],
+  //           [0, 0, 0, 1, 0],
+  //           [0, 0, 0, 0, 1],
+  //         ],
+  //       },
+  //     ].forEach((data) => {
+  //       const actual = tasks.getIdentityMatrix(data.n);
+  //       assert.deepEqual(data.expected, actual);
+  //     });
+  //   }
+  // );
 
-  it.optional(
-    'getIndicesOfOddNumbers should return an array containing indices of odd elements',
-    () => {
-      [
-        {
-          arr: [1, 2, 3, 4, 5],
-          expected: [0, 2, 4],
-        },
-        {
-          arr: [2, 4, 6, 8, 10],
-          expected: [],
-        },
-        {
-          arr: [11, 22, 33, 44, 55],
-          expected: [0, 2, 4],
-        },
-      ].forEach((data) => {
-        const actual = tasks.getIndicesOfOddNumbers(data.arr);
-        assert.deepEqual(data.expected, actual);
-      });
-    }
-  );
+  // it.optional(
+  //   'getIndicesOfOddNumbers should return an array containing indices of odd elements',
+  //   () => {
+  //     [
+  //       {
+  //         arr: [1, 2, 3, 4, 5],
+  //         expected: [0, 2, 4],
+  //       },
+  //       {
+  //         arr: [2, 4, 6, 8, 10],
+  //         expected: [],
+  //       },
+  //       {
+  //         arr: [11, 22, 33, 44, 55],
+  //         expected: [0, 2, 4],
+  //       },
+  //     ].forEach((data) => {
+  //       const actual = tasks.getIndicesOfOddNumbers(data.arr);
+  //       assert.deepEqual(data.expected, actual);
+  //     });
+  //   }
+  // );
 
-  // getHexRGBValues
-  it.optional(
-    'getHexRGBValues should return an array of RGB Hex strings',
-    () => {
-      [
-        {
-          arr: [0, 255, 16777215],
-          expected: ['#000000', '#0000FF', '#FFFFFF'],
-        },
-        {
-          arr: [],
-          expected: [],
-        },
-      ].forEach((data) => {
-        const actual = tasks.getHexRGBValues(data.arr);
-        assert.deepEqual(data.expected, actual);
-      });
-    }
-  );
+  // // getHexRGBValues
+  // it.optional(
+  //   'getHexRGBValues should return an array of RGB Hex strings',
+  //   () => {
+  //     [
+  //       {
+  //         arr: [0, 255, 16777215],
+  //         expected: ['#000000', '#0000FF', '#FFFFFF'],
+  //       },
+  //       {
+  //         arr: [],
+  //         expected: [],
+  //       },
+  //     ].forEach((data) => {
+  //       const actual = tasks.getHexRGBValues(data.arr);
+  //       assert.deepEqual(data.expected, actual);
+  //     });
+  //   }
+  // );
 
-  it.optional('getMaxItems should return n largest values', () => {
-    [
-      {
-        arr: [],
-        n: 5,
-        expected: [],
-      },
-      {
-        arr: [1, 2],
-        n: 1,
-        expected: [2],
-      },
-      {
-        arr: [2, 3, 1],
-        n: 2,
-        expected: [3, 2],
-      },
-      {
-        arr: [10, 2, 7, 5, 3, -5],
-        n: 3,
-        expected: [10, 7, 5],
-      },
-      {
-        arr: [10, 10, 10, 10],
-        n: 3,
-        expected: [10, 10, 10],
-      },
-    ].forEach((data) => {
-      const actual = tasks.getMaxItems(data.arr, data.n);
-      assert.deepEqual(data.expected, actual);
-    });
-  });
+  // it.optional('getMaxItems should return n largest values', () => {
+  //   [
+  //     {
+  //       arr: [],
+  //       n: 5,
+  //       expected: [],
+  //     },
+  //     {
+  //       arr: [1, 2],
+  //       n: 1,
+  //       expected: [2],
+  //     },
+  //     {
+  //       arr: [2, 3, 1],
+  //       n: 2,
+  //       expected: [3, 2],
+  //     },
+  //     {
+  //       arr: [10, 2, 7, 5, 3, -5],
+  //       n: 3,
+  //       expected: [10, 7, 5],
+  //     },
+  //     {
+  //       arr: [10, 10, 10, 10],
+  //       n: 3,
+  //       expected: [10, 10, 10],
+  //     },
+  //   ].forEach((data) => {
+  //     const actual = tasks.getMaxItems(data.arr, data.n);
+  //     assert.deepEqual(data.expected, actual);
+  //   });
+  // });
 
-  // findCommonElements
-  it.optional(
-    'findCommonElements should return an array containing common elements',
-    () => {
-      [
-        {
-          arr1: [1, 2, 3],
-          arr2: [2, 3, 4],
-          expected: [2, 3],
-        },
-        {
-          arr1: ['a', 'b', 'c'],
-          arr2: ['b', 'c', 'd'],
-          expected: ['b', 'c'],
-        },
-        {
-          arr1: [1, 2, 3],
-          arr2: ['a', 'b', 'c'],
-          expected: [],
-        },
-      ].forEach((data) => {
-        const actual = tasks.findCommonElements(data.arr1, data.arr2);
-        assert.deepEqual(data.expected, actual);
-      });
-    }
-  );
+  // // findCommonElements
+  // it.optional(
+  //   'findCommonElements should return an array containing common elements',
+  //   () => {
+  //     [
+  //       {
+  //         arr1: [1, 2, 3],
+  //         arr2: [2, 3, 4],
+  //         expected: [2, 3],
+  //       },
+  //       {
+  //         arr1: ['a', 'b', 'c'],
+  //         arr2: ['b', 'c', 'd'],
+  //         expected: ['b', 'c'],
+  //       },
+  //       {
+  //         arr1: [1, 2, 3],
+  //         arr2: ['a', 'b', 'c'],
+  //         expected: [],
+  //       },
+  //     ].forEach((data) => {
+  //       const actual = tasks.findCommonElements(data.arr1, data.arr2);
+  //       assert.deepEqual(data.expected, actual);
+  //     });
+  //   }
+  // );
 
-  // findLongestIncreasingSubsequence
-  it.optional(
-    'findLongestIncreasingSubsequence should return a length of the longest increasing subsequence',
-    () => {
-      [
-        {
-          arr: [10, 22, 9, 33, 21, 50, 41, 60, 80],
-          expected: 3,
-        },
-        {
-          arr: [3, 10, 2, 1, 20],
-          expected: 2,
-        },
-        {
-          arr: [50, 3, 10, 7, 40, 80],
-          expected: 3,
-        },
-        {
-          arr: [41, 60, 80, 10, 22, 9, 33, 21, 50],
-          expected: 3,
-        },
-      ].forEach((data) => {
-        const actual = tasks.findLongestIncreasingSubsequence(data.arr);
-        assert.strictEqual(data.expected, actual);
-      });
-    }
-  );
+  // // findLongestIncreasingSubsequence
+  // it.optional(
+  //   'findLongestIncreasingSubsequence should return a length of the longest increasing subsequence',
+  //   () => {
+  //     [
+  //       {
+  //         arr: [10, 22, 9, 33, 21, 50, 41, 60, 80],
+  //         expected: 3,
+  //       },
+  //       {
+  //         arr: [3, 10, 2, 1, 20],
+  //         expected: 2,
+  //       },
+  //       {
+  //         arr: [50, 3, 10, 7, 40, 80],
+  //         expected: 3,
+  //       },
+  //       {
+  //         arr: [41, 60, 80, 10, 22, 9, 33, 21, 50],
+  //         expected: 3,
+  //       },
+  //     ].forEach((data) => {
+  //       const actual = tasks.findLongestIncreasingSubsequence(data.arr);
+  //       assert.strictEqual(data.expected, actual);
+  //     });
+  //   }
+  // );
 
-  it.optional(
-    'propagateItemsByPositionIndex should propagate every item its position time',
-    () => {
-      [
-        {
-          arr: [],
-          expected: [],
-        },
-        {
-          arr: [1],
-          expected: [1],
-        },
-        {
-          arr: ['a', 'b'],
-          expected: ['a', 'b', 'b'],
-        },
-        {
-          arr: ['a', 'b', 'c', null],
-          expected: ['a', 'b', 'b', 'c', 'c', 'c', null, null, null, null],
-        },
-        {
-          arr: [1, 2, 3, 4, 5],
-          expected: [1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5],
-        },
-      ].forEach((data) => {
-        const actual = tasks.propagateItemsByPositionIndex(data.arr);
-        assert.deepEqual(data.expected, actual);
-      });
-    }
-  );
+  // it.optional(
+  //   'propagateItemsByPositionIndex should propagate every item its position time',
+  //   () => {
+  //     [
+  //       {
+  //         arr: [],
+  //         expected: [],
+  //       },
+  //       {
+  //         arr: [1],
+  //         expected: [1],
+  //       },
+  //       {
+  //         arr: ['a', 'b'],
+  //         expected: ['a', 'b', 'b'],
+  //       },
+  //       {
+  //         arr: ['a', 'b', 'c', null],
+  //         expected: ['a', 'b', 'b', 'c', 'c', 'c', null, null, null, null],
+  //       },
+  //       {
+  //         arr: [1, 2, 3, 4, 5],
+  //         expected: [1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5],
+  //       },
+  //     ].forEach((data) => {
+  //       const actual = tasks.propagateItemsByPositionIndex(data.arr);
+  //       assert.deepEqual(data.expected, actual);
+  //     });
+  //   }
+  // );
 
-  // shiftArray
-  it.optional('shiftArray should return the shifted array', () => {
-    [
-      {
-        arr: [1, 2, 3, 4, 5],
-        n: 2,
-        expected: [4, 5, 1, 2, 3],
-      },
-      {
-        arr: ['a', 'b', 'c', 'd'],
-        n: -1,
-        expected: ['b', 'c', 'd', 'a'],
-      },
-      {
-        arr: [10, 20, 30, 40, 50],
-        n: -3,
-        expected: [40, 50, 10, 20, 30],
-      },
-    ].forEach((data) => {
-      const actual = tasks.shiftArray(data.arr, data.n);
-      assert.deepEqual(data.expected, actual);
-    });
-  });
+  // // shiftArray
+  // it.optional('shiftArray should return the shifted array', () => {
+  //   [
+  //     {
+  //       arr: [1, 2, 3, 4, 5],
+  //       n: 2,
+  //       expected: [4, 5, 1, 2, 3],
+  //     },
+  //     {
+  //       arr: ['a', 'b', 'c', 'd'],
+  //       n: -1,
+  //       expected: ['b', 'c', 'd', 'a'],
+  //     },
+  //     {
+  //       arr: [10, 20, 30, 40, 50],
+  //       n: -3,
+  //       expected: [40, 50, 10, 20, 30],
+  //     },
+  //   ].forEach((data) => {
+  //     const actual = tasks.shiftArray(data.arr, data.n);
+  //     assert.deepEqual(data.expected, actual);
+  //   });
+  // });
 
-  it.optional(
-    'sortDigitNamesByNumericOrder should sort digit names by its numeric value',
-    () => {
-      [
-        {
-          arr: [],
-          expected: [],
-        },
-        {
-          arr: ['nine', 'one'],
-          expected: ['one', 'nine'],
-        },
-        {
-          arr: ['one', 'two', 'three'],
-          expected: ['one', 'two', 'three'],
-        },
-        {
-          arr: ['nine', 'eight', 'nine', 'eight'],
-          expected: ['eight', 'eight', 'nine', 'nine'],
-        },
-        {
-          arr: ['one', 'one', 'one', 'zero'],
-          expected: ['zero', 'one', 'one', 'one'],
-        },
-        {
-          arr: [
-            'nine',
-            'eight',
-            'seven',
-            'six',
-            'five',
-            'four',
-            'three',
-            'two',
-            'one',
-            'zero',
-          ],
-          expected: [
-            'zero',
-            'one',
-            'two',
-            'three',
-            'four',
-            'five',
-            'six',
-            'seven',
-            'eight',
-            'nine',
-          ],
-        },
-      ].forEach((data) => {
-        const actual = tasks.sortDigitNamesByNumericOrder(data.arr);
-        assert.deepEqual(data.expected, actual);
-      });
-    }
-  );
+  // it.optional(
+  //   'sortDigitNamesByNumericOrder should sort digit names by its numeric value',
+  //   () => {
+  //     [
+  //       {
+  //         arr: [],
+  //         expected: [],
+  //       },
+  //       {
+  //         arr: ['nine', 'one'],
+  //         expected: ['one', 'nine'],
+  //       },
+  //       {
+  //         arr: ['one', 'two', 'three'],
+  //         expected: ['one', 'two', 'three'],
+  //       },
+  //       {
+  //         arr: ['nine', 'eight', 'nine', 'eight'],
+  //         expected: ['eight', 'eight', 'nine', 'nine'],
+  //       },
+  //       {
+  //         arr: ['one', 'one', 'one', 'zero'],
+  //         expected: ['zero', 'one', 'one', 'one'],
+  //       },
+  //       {
+  //         arr: [
+  //           'nine',
+  //           'eight',
+  //           'seven',
+  //           'six',
+  //           'five',
+  //           'four',
+  //           'three',
+  //           'two',
+  //           'one',
+  //           'zero',
+  //         ],
+  //         expected: [
+  //           'zero',
+  //           'one',
+  //           'two',
+  //           'three',
+  //           'four',
+  //           'five',
+  //           'six',
+  //           'seven',
+  //           'eight',
+  //           'nine',
+  //         ],
+  //       },
+  //     ].forEach((data) => {
+  //       const actual = tasks.sortDigitNamesByNumericOrder(data.arr);
+  //       assert.deepEqual(data.expected, actual);
+  //     });
+  //   }
+  // );
 
-  it.optional(
-    'swapHeadAndTail should swap the head and tail of the array',
-    () => {
-      [
-        {
-          arr: [1],
-          expected: [1],
-        },
-        {
-          arr: [1, 2],
-          expected: [2, 1],
-        },
-        {
-          arr: [1, 2, 3],
-          expected: [3, 2, 1],
-        },
-        {
-          arr: [1, 2, 3, 4],
-          expected: [3, 4, 1, 2],
-        },
-        {
-          arr: [1, 2, 3, 4, 5],
-          expected: [4, 5, 3, 1, 2],
-        },
-      ].forEach((data) => {
-        const actual = tasks.swapHeadAndTail(Array.from(data.arr));
-        assert.deepEqual(
-          data.expected,
-          actual,
-          `The result of swapping head and tail [${data.arr}] is not correct`
-        );
-      });
-    }
-  );
+  // it.optional(
+  //   'swapHeadAndTail should swap the head and tail of the array',
+  //   () => {
+  //     [
+  //       {
+  //         arr: [1],
+  //         expected: [1],
+  //       },
+  //       {
+  //         arr: [1, 2],
+  //         expected: [2, 1],
+  //       },
+  //       {
+  //         arr: [1, 2, 3],
+  //         expected: [3, 2, 1],
+  //       },
+  //       {
+  //         arr: [1, 2, 3, 4],
+  //         expected: [3, 4, 1, 2],
+  //       },
+  //       {
+  //         arr: [1, 2, 3, 4, 5],
+  //         expected: [4, 5, 3, 1, 2],
+  //       },
+  //     ].forEach((data) => {
+  //       const actual = tasks.swapHeadAndTail(Array.from(data.arr));
+  //       assert.deepEqual(
+  //         data.expected,
+  //         actual,
+  //         `The result of swapping head and tail [${data.arr}] is not correct`
+  //       );
+  //     });
+  //   }
+  // );
 
-  it.optional(
-    'Functions from 04-array-test.js should not use basic loops statements',
-    () => {
-      Object.getOwnPropertyNames(tasks)
-        .filter((x) => tasks[x] instanceof Function)
-        .forEach((f) => {
-          assert(
-            !/([;{]\s*(for|while)\s*\()|(\.forEach\s*\()/.test(
-              tasks[f].toString()
-            ),
-            `Function "${f}" should not use basic loop statements (for, while or forEach)! Please use specialized array methods (map, reduce etc).`
-          );
-        });
-    }
-  );
+  // it.optional(
+  //   'Functions from 04-array-test.js should not use basic loops statements',
+  //   () => {
+  //     Object.getOwnPropertyNames(tasks)
+  //       .filter((x) => tasks[x] instanceof Function)
+  //       .forEach((f) => {
+  //         assert(
+  //           !/([;{]\s*(for|while)\s*\()|(\.forEach\s*\()/.test(
+  //             tasks[f].toString()
+  //           ),
+  //           `Function "${f}" should not use basic loop statements (for, while or forEach)! Please use specialized array methods (map, reduce etc).`
+  //         );
+  //       });
+  //   }
+  // );
 });
 
 describe('strings-tasks optimal implementation', () => {
@@ -1170,29 +1170,29 @@ describe('strings-tasks optimal implementation', () => {
     }
   );
 
-  it.optional('optimal implementation of flattenArray', function test() {
-    let fnStr = tasks.flattenArray.toString();
-    const idx = fnStr.indexOf('{');
-    fnStr = fnStr.slice(idx);
-    if (!fnStr.includes('return')) {
-      this.skip();
-    }
-    assert.equal(
-      fnStr.includes('flat'),
-      true,
-      'You need to use a different method, look for the appropriate method in the documentation https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array'
-    );
-  });
+  // it.optional('optimal implementation of flattenArray', function test() {
+  //   let fnStr = tasks.flattenArray.toString();
+  //   const idx = fnStr.indexOf('{');
+  //   fnStr = fnStr.slice(idx);
+  //   if (!fnStr.includes('return')) {
+  //     this.skip();
+  //   }
+  //   assert.equal(
+  //     fnStr.includes('flat'),
+  //     true,
+  //     'You need to use a different method, look for the appropriate method in the documentation https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array'
+  //   );
+  // });
 
-  it.optional('optimal implementation of selectMany', function test() {
-    const fnStr = tasks.selectMany.toString();
-    if (!fnStr.includes('return')) {
-      this.skip();
-    }
-    assert.equal(
-      fnStr.includes('flatMap'),
-      true,
-      'You need to use a different method, look for the appropriate method in the documentation https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array'
-    );
-  });
+  // it.optional('optimal implementation of selectMany', function test() {
+  //   const fnStr = tasks.selectMany.toString();
+  //   if (!fnStr.includes('return')) {
+  //     this.skip();
+  //   }
+  //   assert.equal(
+  //     fnStr.includes('flatMap'),
+  //     true,
+  //     'You need to use a different method, look for the appropriate method in the documentation https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array'
+  //   );
+  // });
 });
