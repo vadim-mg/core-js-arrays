@@ -459,8 +459,10 @@ function getIndicesOfOddNumbers(numbers) {
  *    getHexRGBValues([ 0, 255, 16777215]) => [ '#000000', '#0000FF', '#FFFFFF' ]
  *    getHexRGBValues([]) => []
  */
-function getHexRGBValues(/* arr */) {
-  throw new Error('Not implemented');
+function getHexRGBValues(arr) {
+  return arr.map((val) => {
+    return `#${val.toString(16).padStart(6, '0').toUpperCase()}`;
+  });
 }
 
 /**
@@ -477,8 +479,15 @@ function getHexRGBValues(/* arr */) {
  *   getMaxItems([ 10, 2, 7, 5, 3, -5 ], 3) => [ 10, 7, 5 ]
  *   getMaxItems([ 10, 10, 10, 10 ], 3) => [ 10, 10, 10 ]
  */
-function getMaxItems(/* arr, n */) {
-  throw new Error('Not implemented');
+function getMaxItems(arr, n) {
+  return arr
+    .sort((a, b) => b - a)
+    .reduce((acc, val, i) => {
+      if (i < n) {
+        acc.push(val);
+      }
+      return acc;
+    }, []);
 }
 
 /**
@@ -493,8 +502,13 @@ function getMaxItems(/* arr, n */) {
  *    findCommonElements(['a', 'b', 'c'], ['b', 'c', 'd']) => [ 'b', 'c' ]
  *    findCommonElements([1, 2, 3], ['a', 'b', 'c']) => []
  */
-function findCommonElements(/* arr1, arr2 */) {
-  throw new Error('Not implemented');
+function findCommonElements(arr1, arr2) {
+  return arr1.reduce((acc, val) => {
+    if (arr2.includes(val)) {
+      acc.push(val);
+    }
+    return acc;
+  }, []);
 }
 
 /**
@@ -508,8 +522,19 @@ function findCommonElements(/* arr1, arr2 */) {
  *    findLongestIncreasingSubsequence([3, 10, 2, 1, 20]) => 2
  *    findLongestIncreasingSubsequence([50, 3, 10, 7, 40, 80]) => 3
  */
-function findLongestIncreasingSubsequence(/* nums */) {
-  throw new Error('Not implemented');
+function findLongestIncreasingSubsequence(nums) {
+  let max = 1;
+  let totalMax = 1;
+  nums.forEach((val, i, arr) => {
+    const nextVal = i + 1 === arr.length ? val : arr[i + 1];
+    if (val < nextVal) {
+      max += 1;
+    } else {
+      totalMax = Math.max(max, totalMax);
+      max = 1;
+    }
+  });
+  return Math.max(max, totalMax);
 }
 
 /**
@@ -526,8 +551,11 @@ function findLongestIncreasingSubsequence(/* nums */) {
  *  propagateItemsByPositionIndex([ 'a', 'b', 'c', null ]) => [ 'a', 'b', 'b', 'c', 'c', 'c',  null, null, null, null ]
  *  propagateItemsByPositionIndex([ 1,2,3,4,5 ]) => [ 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  return arr.reduce(
+    (acc, val, i) => [...acc, ...Array.from(Array(i + 1), () => val)],
+    []
+  );
 }
 
 /**
