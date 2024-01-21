@@ -523,18 +523,23 @@ function findCommonElements(arr1, arr2) {
  *    findLongestIncreasingSubsequence([50, 3, 10, 7, 40, 80]) => 3
  */
 function findLongestIncreasingSubsequence(nums) {
-  let max = 1;
-  let totalMax = 1;
-  nums.forEach((val, i, arr) => {
-    const nextVal = i + 1 === arr.length ? val : arr[i + 1];
-    if (val < nextVal) {
-      max += 1;
-    } else {
-      totalMax = Math.max(max, totalMax);
-      max = 1;
+  const maxVals = nums.reduce(
+    (acc, val, i, arr) => {
+      const nextVal = i + 1 === arr.length ? val : arr[i + 1];
+      if (val < nextVal) {
+        acc.max += 1;
+      } else {
+        acc.totalMax = Math.max(acc.max, acc.totalMax);
+        acc.max = 1;
+      }
+      return acc;
+    },
+    {
+      max: 1,
+      totalMax: 1,
     }
-  });
-  return Math.max(max, totalMax);
+  );
+  return Math.max(maxVals.max, maxVals.totalMax);
 }
 
 /**
@@ -571,8 +576,11 @@ function propagateItemsByPositionIndex(arr) {
  *    shiftArray(['a', 'b', 'c', 'd'], -1) => ['b', 'c', 'd', 'a']
  *    shiftArray([10, 20, 30, 40, 50], -3) => [40, 50, 10, 20, 30]
  */
-function shiftArray(/* arr, n */) {
-  throw new Error('Not implemented');
+function shiftArray(arr, n) {
+  if (n >= 0) {
+    return [...arr.slice(arr.length - n), ...arr.slice(0, arr.length - n)];
+  }
+  return [...arr.slice(-n, arr.length), ...arr.slice(0, -n)];
 }
 
 /**
@@ -588,8 +596,23 @@ function shiftArray(/* arr, n */) {
  *   sortDigitNamesByNumericOrder([ 'nine','eight','nine','eight' ]) => [ 'eight','eight','nine','nine']
  *   sortDigitNamesByNumericOrder([ 'one','one','one','zero' ]) => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const digits = [
+    'zero',
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+  ].reduce((acc, val, i) => {
+    acc[val] = i;
+    return acc;
+  }, {});
+  return arr.sort((a, b) => digits[a] - digits[b]);
 }
 
 /**
@@ -611,8 +634,16 @@ function sortDigitNamesByNumericOrder(/* arr */) {
  *   swapHeadAndTail([]) => []
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  const halfSize = Math.floor(arr.length / 2);
+  const middle = arr.length % 2 ? [arr[halfSize]] : [];
+  return halfSize
+    ? [
+        ...arr.slice(Math.ceil(arr.length / 2)),
+        ...middle,
+        ...arr.slice(0, halfSize),
+      ]
+    : middle;
 }
 
 module.exports = {
